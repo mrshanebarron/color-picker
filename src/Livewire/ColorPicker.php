@@ -37,6 +37,6 @@ class ColorPicker extends Component
 
     public function render()
     {
-        return view('ld-color-picker::livewire.color-picker');
+        return view('sb-color-picker::livewire.color-picker');
     }
 }

@@ -11,14 +11,14 @@ class color-pickerServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/ld-color-picker.php', 'ld-color-picker');
+        $this->mergeConfigFrom(__DIR__ . '/../config/sb-color-picker.php', 'sb-color-picker');
     }
 
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ld-color-picker');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-color-picker');
 
-        Livewire::component('ld-color-picker', color-picker::class);
+        Livewire::component('sb-color-picker', color-picker::class);
 
         $this->loadViewComponentsAs('ld', [
             Bladecolor-picker::class,
@@ -26,12 +26,12 @@ class color-pickerServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/ld-color-picker.php' => config_path('ld-color-picker.php'),
-            ], 'ld-color-picker-config');
+                __DIR__ . '/../config/sb-color-picker.php' => config_path('sb-color-picker.php'),
+            ], 'sb-color-picker-config');
 
             $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/ld-color-picker'),
-            ], 'ld-color-picker-views');
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/sb-color-picker'),
+            ], 'sb-color-picker-views');
         }
     }
 }

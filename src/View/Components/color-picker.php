@@ -13,6 +13,6 @@ class color-picker extends Component
 
     public function render()
     {
-        return view('ld-color-picker::components.color-picker');
+        return view('sb-color-picker::components.color-picker');
     }
 }

@@ -40,7 +40,7 @@
 import { computed } from 'vue';
 
 export default {
-  name: 'LdColorPicker',
+  name: 'SbColorPicker',
   props: {
     modelValue: { type: String, default: '#000000' },
     presets: { type: Array, default: () => [] },

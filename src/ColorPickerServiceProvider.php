@@ -4,8 +4,7 @@ namespace MrShaneBarron\ColorPicker;
 
 use Illuminate\Support\ServiceProvider;
 use MrShaneBarron\ColorPicker\Livewire\ColorPicker;
-use MrShaneBarron\ColorPicker\View\Components\color-picker as BladeColorPicker;
-use Livewire\Livewire;
+use MrShaneBarron\ColorPicker\View\Components\ColorPicker as BladeColorPicker;
 
 class ColorPickerServiceProvider extends ServiceProvider
 {
@@ -18,7 +17,9 @@ class ColorPickerServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-color-picker');
 
-        Livewire::component('sb-color-picker', color-picker::class);
+        if (class_exists(\Livewire\Livewire::class)) {
+            \Livewire\Livewire::component('sb-color-picker', ColorPicker::class);
+        }
 
         $this->loadViewComponentsAs('ld', [
             BladeColorPicker::class,

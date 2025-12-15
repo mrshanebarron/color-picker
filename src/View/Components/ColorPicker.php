@@ -1,10 +1,10 @@
 <?php
 
-namespace MrShaneBarron\color-picker\View\Components;
+namespace MrShaneBarron\ColorPicker\View\Components;
 
 use Illuminate\View\Component;
 
-class color-picker extends Component
+class ColorPicker extends Component
 {
     public function __construct()
     {

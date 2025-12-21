@@ -1,49 +1,54 @@
-<div x-data="{ showPicker: false }" class="relative">
+<div x-data="{ showPicker: false }" style="position: relative; display: inline-block;">
     <button
         type="button"
-        @click="showPicker = !showPicker"
-        class="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+        x-on:click="showPicker = !showPicker"
+        style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white; cursor: pointer;"
     >
-        <span class="w-6 h-6 rounded border" style="background-color: {{ $value }}"></span>
+        <span style="width: 24px; height: 24px; border-radius: 4px; border: 1px solid #e5e7eb; background-color: {{ $value }};"></span>
         @if($showInput)
-            <span class="text-sm text-gray-700">{{ $value }}</span>
+            <span style="font-size: 14px; color: #374151;">{{ $value }}</span>
         @endif
     </button>
 
     <div
         x-show="showPicker"
-        @click.outside="showPicker = false"
-        x-transition
-        class="absolute z-10 mt-2 p-3 bg-white rounded-lg shadow-lg border"
+        x-on:click.outside="showPicker = false"
+        :class="showPicker ? 'sb-picker-visible' : 'sb-picker-hidden'"
+        style="position: absolute; z-index: 50; margin-top: 8px; padding: 12px; background: white; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;"
     >
-        <div class="mb-3">
+        <div style="margin-bottom: 12px;">
             <input
                 type="color"
                 wire:model.live="value"
-                class="w-full h-10 cursor-pointer rounded"
+                style="width: 100%; height: 40px; cursor: pointer; border-radius: 4px; border: none;"
             >
         </div>
 
-        <div class="grid grid-cols-5 gap-2">
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
             @foreach($swatches as $swatch)
                 <button
                     type="button"
                     wire:click="selectColor('{{ $swatch }}')"
-                    class="w-8 h-8 rounded-lg border-2 transition-transform hover:scale-110 {{ $value === $swatch ? 'border-gray-900 ring-2 ring-offset-2 ring-gray-400' : 'border-transparent' }}"
-                    style="background-color: {{ $swatch }}"
+                    style="width: 32px; height: 32px; border-radius: 8px; cursor: pointer; transition: transform 0.15s; border: 2px solid {{ $value === $swatch ? '#111827' : 'transparent' }}; background-color: {{ $swatch }};"
+                    onmouseover="this.style.transform='scale(1.1)'"
+                    onmouseout="this.style.transform='scale(1)'"
                 ></button>
             @endforeach
         </div>
 
         @if($showInput)
-            <div class="mt-3">
+            <div style="margin-top: 12px;">
                 <input
                     type="text"
                     wire:model.live="value"
-                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    style="width: 100%; padding: 8px 12px; font-size: 14px; border: 1px solid #d1d5db; border-radius: 8px; outline: none;"
                     placeholder="#000000"
                 >
             </div>
         @endif
     </div>
+    <style>
+        .sb-picker-hidden { visibility: hidden; opacity: 0; transition: opacity 150ms ease, visibility 150ms ease; }
+        .sb-picker-visible { visibility: visible; opacity: 1; transition: opacity 150ms ease, visibility 150ms ease; }
+    </style>
 </div>

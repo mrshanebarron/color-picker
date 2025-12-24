@@ -12,8 +12,14 @@
 
     <div
         x-show="showPicker"
+        x-cloak
         x-on:click.outside="showPicker = false"
-        :class="showPicker ? 'sb-picker-visible' : 'sb-picker-hidden'"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
         style="position: absolute; z-index: 50; margin-top: 8px; padding: 12px; background: white; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;"
     >
         <div style="margin-bottom: 12px;">
@@ -47,8 +53,4 @@
             </div>
         @endif
     </div>
-    <style>
-        .sb-picker-hidden { visibility: hidden; opacity: 0; transition: opacity 150ms ease, visibility 150ms ease; }
-        .sb-picker-visible { visibility: visible; opacity: 1; transition: opacity 150ms ease, visibility 150ms ease; }
-    </style>
 </div>
